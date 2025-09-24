@@ -1,0 +1,460 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PromptPlayground from '../components/PromptPlayground';
+
+const navLinks = [
+	{ href: '#how-it-works', label: 'How it works' },
+	{ href: '#samples', label: 'Gallery' },
+	{ href: '#pricing', label: 'Pricing' },
+	{ href: '#faq', label: 'FAQ' },
+];
+
+const steps = [
+	{
+		title: 'Describe your idea',
+		description:
+			'Use natural language prompts—no art degree required. Add vibe, lighting, and style for extra precision.',
+		icon: '📝',
+	},
+	{
+		title: 'Our AI gets to work',
+		description:
+			'Gambarno blends diffusion and style transfer models to craft high fidelity imagery in seconds.',
+		icon: '⚙️',
+	},
+	{
+		title: 'Share or iterate instantly',
+		description:
+			'Export in multiple aspect ratios, upscale in one tap, and remix prompts for new variations.',
+		icon: '🚀',
+	},
+];
+
+const features = [
+	'Lightning-fast renders averaging 8 seconds per prompt.',
+	'Consistent characters with prompt memory and reference image support.',
+	'Built-in brand palettes, typography, and export presets.',
+	'Enterprise-grade privacy with content moderation controls.',
+];
+
+const testimonials = [
+	{
+		quote:
+			'Gambarno lets our design team prototype campaign visuals before we even brief an illustrator.',
+		author: 'Avery Collins',
+		role: 'Creative Director, Orbital Studio',
+	},
+	{
+		quote:
+			'The output quality rivals bespoke concept art and the turn-around is unbelievable.',
+		author: 'Samir Desai',
+		role: 'Founder, IndieForge Games',
+	},
+];
+
+const faqs = [
+	{
+		question: 'Can I use the generated images commercially?',
+		answer:
+			'Yes. Your license covers personal and commercial use, with optional enterprise indemnification.',
+	},
+	{
+		question: 'Will there be an API?',
+		answer:
+			'We’re launching a REST and WebSocket API in Q4 2025 so you can integrate generation into your own apps.',
+	},
+	{
+		question: 'Which languages do prompts support?',
+		answer:
+			'Prompts in over 25 languages are supported today, and we auto-translate for best model performance.',
+	},
+];
+
+const pricingTiers = [
+	{
+		name: 'Creator',
+		price: '$19',
+		description: 'Ideal for hobbyists exploring AI visuals.',
+		features: ['200 image credits / month', 'HD outputs + 2x upscale', 'Personal license', 'Prompt templates'],
+	},
+	{
+		name: 'Studio',
+		price: '$59',
+		description: 'For agencies and marketing teams shipping fast.',
+		features: [
+			'800 image credits / month',
+			'Brand kits and custom presets',
+			'Multi-seat collaboration',
+			'Priority rendering queue',
+		],
+		highlighted: true,
+	},
+	{
+		name: 'Enterprise',
+		price: 'Let’s chat',
+		description: 'Advanced security, SLAs, and on-prem deployments.',
+		features: ['Unlimited generations', 'Dedicated success manager', 'SOC2 + GDPR compliance', 'Private model fine-tuning'],
+	},
+];
+
+const galleryImages = [
+	{
+		src: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
+		alt: 'Surreal neon-lit city street with rain reflections.',
+		tag: 'Cyberpunk',
+	},
+	{
+		src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+		alt: 'Illustrated fox reading a book in a cozy library.',
+		tag: 'Illustration',
+	},
+	{
+		src: 'https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1200&q=80',
+		alt: 'Futuristic concept car with reflective chrome body.',
+		tag: 'Product Design',
+	},
+	{
+		src: 'https://images.unsplash.com/photo-1526045478516-99145907023c?auto=format&fit=crop&w=1200&q=80',
+		alt: 'Dreamy pastel clouds over mountain range.',
+		tag: 'Landscape',
+	},
+];
+
+const waitlistStats = [
+	{ value: '40K+', label: 'images generated in beta' },
+	{ value: '8s', label: 'average render time' },
+	{ value: '92%', label: 'prompt satisfaction' },
+];
+---
+
+<Layout>
+	<header class="sticky top-0 z-40 bg-slate-950/70 backdrop-blur">
+		<nav class="flex items-center justify-between py-5 text-sm font-medium text-slate-200">
+			<a href="#hero" class="flex items-center gap-2 text-base font-semibold tracking-tight">
+				<div
+					class="grid h-9 w-9 place-content-center rounded-xl bg-gradient-to-r from-emerald-400 via-sky-500 to-indigo-500 text-lg font-bold text-slate-950 shadow-lg shadow-emerald-500/20"
+				>
+					G
+				</div>
+				<span>Gambarno</span>
+			</a>
+			<div class="hidden items-center gap-8 lg:flex">
+				{navLinks.map((link) => (
+					<a
+						class="rounded-full px-3 py-2 transition-colors hover:bg-slate-800/70 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400"
+						href={link.href}
+					>
+						{link.label}
+					</a>
+				))}
+			</div>
+			<a
+				href="#playground"
+				class="inline-flex items-center gap-2 rounded-full border border-emerald-400/60 bg-emerald-400/10 px-4 py-2 text-emerald-200 transition hover:border-emerald-300 hover:bg-emerald-400/20 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+			>
+				<span>Try Gambarno</span>
+				<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+					<path
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="1.5"
+						d="M4.167 10H15m0 0-4.167-4.167M15 10l-4.167 4.167"
+					/>
+				</svg>
+			</a>
+		</nav>
+	</header>
+
+	<main id="main" class="flex flex-1 flex-col gap-24 pb-24">
+		<section
+			id="hero"
+			class="relative grid gap-16 pb-12 pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20 lg:pb-24 lg:pt-20"
+		>
+			<div class="space-y-8">
+				<div class="inline-flex items-center gap-2 rounded-full border border-slate-800/80 bg-slate-900/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+					<span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+					Generative Studio
+				</div>
+				<h1 class="max-w-xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+					Imagine boldly. Gambarno makes world-class visuals from your words.
+				</h1>
+				<p class="max-w-2xl text-lg leading-relaxed text-slate-300">
+					Craft concept art, product renders, brand imagery, and more with our diffusion engine tuned for
+					real-world teams. Sketch ideas, iterate in seconds, and deliver assets your clients love.
+				</p>
+				<div class="flex flex-wrap items-center gap-4">
+					<a
+						href="#playground"
+						class="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-emerald-400 via-sky-500 to-violet-500 px-6 py-3 text-base font-semibold text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:shadow-emerald-400/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+					>
+						Start Generating
+						<svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+							<path
+								stroke="currentColor"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="1.5"
+								d="M4.167 10H15m0 0-4.167-4.167M15 10l-4.167 4.167"
+							/>
+						</svg>
+					</a>
+					<a
+						href="#samples"
+						class="inline-flex items-center gap-2 rounded-full border border-slate-700 px-6 py-3 text-base font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-300"
+					>
+						View Gallery
+					</a>
+				</div>
+				<ul class="flex flex-wrap gap-6 text-sm text-slate-400">
+					{waitlistStats.map((item) => (
+						<li class="flex items-center gap-3" aria-label={item.label}>
+							<div class="text-2xl font-semibold text-white">{item.value}</div>
+							<div class="max-w-[12rem] leading-snug">{item.label}</div>
+						</li>
+					))}
+				</ul>
+			</div>
+			<div class="relative isolate">
+				<div
+					class="absolute inset-0 -z-10 rounded-[2.5rem] bg-gradient-to-br from-emerald-500/30 via-indigo-500/20 to-transparent blur-3xl"
+					aria-hidden="true"
+				></div>
+				<div class="overflow-hidden rounded-[2.5rem] border border-slate-800 bg-slate-950/80 shadow-2xl shadow-emerald-500/20">
+					<img
+						src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1920&q=80"
+						alt="Curated collage of AI-generated artwork in neon and natural palettes."
+						loading="lazy"
+						class="h-full w-full object-cover"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section id="how-it-works" class="space-y-12">
+			<div class="space-y-4 text-center">
+				<h2 class="text-3xl font-semibold text-white sm:text-4xl">How Gambarno works</h2>
+				<p class="mx-auto max-w-2xl text-lg text-slate-300">
+					Everything is tuned for creative teams: create a prompt, pick a style, and let our accelerated
+					pipeline handle the rest while you stay in the flow.
+				</p>
+			</div>
+			<div class="grid gap-6 md:grid-cols-3">
+				{steps.map((step) => (
+					<div class="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 text-left shadow-lg shadow-slate-900/40">
+						<div class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800 text-2xl">
+							<span aria-hidden="true">{step.icon}</span>
+						</div>
+						<h3 class="text-xl font-semibold text-white">{step.title}</h3>
+						<p class="mt-3 text-base text-slate-300">{step.description}</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section class="rounded-3xl border border-emerald-400/25 bg-emerald-400/5 p-10 shadow-lg shadow-emerald-500/10 lg:p-14">
+			<div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+				<div class="space-y-6">
+					<h2 class="text-3xl font-semibold text-white sm:text-4xl">Why teams choose us</h2>
+					<p class="text-lg text-emerald-100">
+						A polished workflow from brief to export. Gambarno nails brand fidelity and keeps legal teams happy
+						with transparent provenance.
+					</p>
+					<ul class="space-y-4 text-base text-emerald-100/90">
+						{features.map((item) => (
+							<li class="flex items-start gap-3">
+								<span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-300">
+									<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+										<path
+											stroke="currentColor"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="1.5"
+											d="m5 10 3.333 3.333L15 6.667"
+										/>
+									</svg>
+								</span>
+								<span class="leading-relaxed">{item}</span>
+							</li>
+						))}
+					</ul>
+					<a
+						href="#waitlist"
+						class="inline-flex items-center gap-3 rounded-full border border-emerald-400/60 bg-slate-950 px-5 py-3 text-sm font-semibold uppercase tracking-widest text-emerald-200 transition hover:border-emerald-300 hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+					>
+						Join the waitlist
+					</a>
+				</div>
+				<div class="relative">
+					<div
+						class="pointer-events-none absolute -left-8 top-10 h-24 w-24 rounded-full bg-emerald-400/30 blur-3xl"
+						aria-hidden="true"
+					></div>
+					<div class="space-y-6 rounded-3xl border border-emerald-400/20 bg-slate-900/70 p-8">
+						{testimonials.map((item) => (
+							<figure class="space-y-4" aria-label={`Testimonial from ${item.author}`}>
+								<blockquote class="text-lg italic text-emerald-100/90">“{item.quote}”</blockquote>
+								<figcaption class="text-sm text-emerald-200/80">
+									<span class="font-semibold text-emerald-100">{item.author}</span>
+									<span class="mx-2 text-emerald-200/60">•</span>
+									<span>{item.role}</span>
+								</figcaption>
+							</figure>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="playground" class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-start">
+			<div class="space-y-6">
+				<h2 class="text-3xl font-semibold text-white sm:text-4xl">Prompt playground</h2>
+				<p class="max-w-xl text-lg text-slate-300">
+					Try the workflow powering our upcoming API. Enter a prompt, pick a vibe, and see what Gambarno could
+					produce once your account is live.
+				</p>
+				<div class="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl shadow-slate-900/40">
+					<p class="mb-4 text-sm font-semibold uppercase tracking-widest text-emerald-300">Prompt tip</p>
+					<p class="text-base leading-relaxed text-slate-200">
+						Blend style + subject + mood. Example: “isometric nighttime cityscape, soft neon reflections, retro
+						synthwave palette”.
+					</p>
+				</div>
+			</div>
+			<div class="rounded-3xl border border-slate-800 bg-slate-950/80">
+				<PromptPlayground client:load />
+			</div>
+		</section>
+
+		<section id="samples" class="space-y-10">
+			<div class="flex flex-wrap items-end justify-between gap-4">
+				<div>
+					<h2 class="text-3xl font-semibold text-white sm:text-4xl">Sample gallery</h2>
+					<p class="mt-2 max-w-2xl text-lg text-slate-300">
+						A curated look at what early adopters are building—brand campaigns, concept scenes, product mockups,
+						and beyond.
+					</p>
+				</div>
+				<a
+					href="#waitlist"
+					class="inline-flex items-center gap-2 rounded-full border border-slate-700 px-5 py-2 text-sm font-semibold uppercase tracking-widest text-slate-200 transition hover:border-slate-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-300"
+				>
+					Request access
+				</a>
+			</div>
+			<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+				{galleryImages.map((image) => (
+					<figure class="group relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/60">
+						<img
+							src={image.src}
+							alt={image.alt}
+							loading="lazy"
+							class="aspect-[4/5] w-full object-cover transition duration-500 group-hover:scale-105"
+						/>
+						<figcaption class="absolute left-4 top-4 rounded-full bg-slate-950/80 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-slate-200">
+							{image.tag}
+						</figcaption>
+					</figure>
+				))}
+			</div>
+		</section>
+
+		<section id="pricing" class="space-y-10">
+			<div class="space-y-4 text-center">
+				<h2 class="text-3xl font-semibold text-white sm:text-4xl">Flexible pricing</h2>
+				<p class="mx-auto max-w-2xl text-lg text-slate-300">
+					Choose the plan that matches your creative output today, then scale with usage-based add-ons as your
+					team grows.
+				</p>
+			</div>
+			<div class="grid gap-6 lg:grid-cols-3">
+				{pricingTiers.map((tier) => (
+					<div
+						class:list={[
+							'flex flex-col gap-6 rounded-3xl border bg-slate-900/60 p-8 text-left shadow-xl shadow-slate-900/30',
+							tier.highlighted
+								? 'border-emerald-400/40 bg-gradient-to-br from-emerald-500/10 via-slate-900 to-slate-950'
+								: 'border-slate-800',
+						]}
+					>
+						<div class="flex items-baseline justify-between">
+							<h3 class="text-2xl font-semibold text-white">{tier.name}</h3>
+							<span class="text-3xl font-bold text-emerald-300">{tier.price}</span>
+						</div>
+						<p class="text-sm text-slate-300">{tier.description}</p>
+						<ul class="space-y-3 text-sm text-slate-200">
+							{tier.features.map((feature) => (
+								<li class="flex items-start gap-3">
+									<span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-300">
+										<svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+											<path
+												stroke="currentColor"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="1.5"
+												d="m5 10 3.333 3.333L15 6.667"
+											/>
+										</svg>
+									</span>
+									<span class="leading-relaxed">{feature}</span>
+								</li>
+							))}
+						</ul>
+						<a
+							href="#waitlist"
+							class="mt-auto inline-flex items-center justify-center rounded-full border border-emerald-400/60 px-5 py-2.5 text-sm font-semibold uppercase tracking-widest text-emerald-200 transition hover:border-emerald-300 hover:text-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+						>
+							Select plan
+						</a>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<section id="faq" class="space-y-10">
+			<div class="space-y-4 text-center">
+				<h2 class="text-3xl font-semibold text-white sm:text-4xl">Frequently asked questions</h2>
+				<p class="mx-auto max-w-2xl text-lg text-slate-300">
+					Still unsure if Gambarno fits your workflow? These quick answers should help—reach out to sales for
+					a tailored demo.
+				</p>
+			</div>
+			<div class="grid gap-6 md:grid-cols-3">
+				{faqs.map((item) => (
+					<div class="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 text-left shadow-lg shadow-slate-900/30">
+						<h3 class="text-lg font-semibold text-white">{item.question}</h3>
+						<p class="mt-3 text-sm leading-relaxed text-slate-300">{item.answer}</p>
+					</div>
+				))}
+			</div>
+		</section>
+	</main>
+
+	<footer
+		id="waitlist"
+		class="flex flex-col gap-10 border-t border-slate-800 py-14 text-slate-300 lg:flex-row lg:items-center lg:justify-between"
+	>
+		<div class="max-w-xl space-y-5">
+			<h2 class="text-2xl font-semibold text-white">Join the waitlist</h2>
+			<p class="text-base">
+				Get launch updates, early access slots, and best-practice prompt guides directly to your inbox.
+			</p>
+		</div>
+		<form class="flex w-full max-w-lg flex-col gap-4 sm:flex-row" aria-label="Join waitlist">
+			<label class="sr-only" for="waitlist-email">Email address</label>
+			<input
+				id="waitlist-email"
+				type="email"
+				required
+				placeholder="you@example.com"
+				class="w-full flex-1 rounded-full border border-slate-800 bg-slate-950 px-5 py-3 text-base text-white placeholder:text-slate-500 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/30"
+			/>
+			<button
+				type="submit"
+				class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-400 via-sky-500 to-violet-500 px-6 py-3 text-sm font-semibold uppercase tracking-widest text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:shadow-emerald-400/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
+			>
+				Notify me
+			</button>
+		</form>
+	</footer>
+</Layout>

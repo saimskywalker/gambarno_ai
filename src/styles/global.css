@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+	--font-sans: 'Inter', 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+	--font-display: 'Plus Jakarta Sans', 'Inter', 'Segoe UI', system-ui, sans-serif;
+	--color-brand-emerald: #34d399;
+}
+
+@layer base {
+	:root {
+		color-scheme: dark;
+	}
+	body {
+		font-family: var(--font-sans);
+		background-color: rgb(2 6 23);
+	}
+	::selection {
+		background-color: rgb(45 212 191 / 0.3);
+		color: rgb(15 23 42);
+	}
+}
